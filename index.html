@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pomodoro Timer - YourTimer</title>
+    <link rel="icon" type="image/png" href="fevicon.png">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Orbitron:wght@400;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+
+    <!-- GSAP -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+    
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Left Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-menu">
+            <a href="index.html" class="sidebar-item active" data-page="pomodoro">
+                <i data-feather="target"></i>
+                <span>🍅 Pomodoro Timer</span>
+            </a>
+            <a href="stopwatch.html" class="sidebar-item" data-page="stopwatch">
+                <i data-feather="activity"></i>
+                <span>⏱ Stopwatch</span>
+            </a>
+            <a href="countdown.html" class="sidebar-item" data-page="countdown">
+                <i data-feather="clock"></i>
+                <span>⏲ Countdown Timer</span>
+            </a>
+            <a href="realtime.html" class="sidebar-item" data-page="clock">
+                <i data-feather="watch"></i>
+                <span>🕒 Real-Time Clock</span>
+            </a>
+        </div>
+    </aside>
+
+    <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">
+        <i data-feather="menu"></i>
+    </button>
+
+    <!-- Spotify Player -->
+    <div class="spotify-player" id="spotifyPlayer">
+
+    <iframe 
+        data-testid="embed-iframe" 
+        style="border-radius:12px"
+        src="https://open.spotify.com/embed/playlist/37i9dQZF1DX3PFzdbtx1Us?utm_source=generator" 
+        width="350"
+        height="80" 
+        frameBorder="0"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+        loading="lazy">
+    </iframe>
+
+    </div>
+
+
+
+    <!-- Fixed Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-left">
+                <a href="index.html" class="logo">
+                    <img src="logo.png" alt="YourTimer Logo" class="logo-img">
+                    <!-- <span>YourTimer</span> -->
+                </a>
+            </div>
+            <div class="nav-right">
+                <a href="index.html" class="nav-link">Home</a>
+                <div class="dropdown">
+                    <button class="nav-link dropdown-btn" id="toolsBtn">
+                        Tools <i data-feather="chevron-down" class="dropdown-icon"></i>
+                    </button>
+                    <div class="dropdown-menu" id="toolsMenu">
+                        <a href="index.html" class="dropdown-item">Pomodoro Timer</a>
+                        <a href="stopwatch.html" class="dropdown-item">Stopwatch</a>
+                        <a href="countdown.html" class="dropdown-item">Countdown Timer</a>
+                        <a href="realtime.html" class="dropdown-item">Real-Time Clock</a>
+                    </div>
+                </div>
+                <!-- <a href="diary.html" class="nav-link write-link">Write ✍️</a> -->
+                <button class="nav-icon-btn" id="themeToggle" aria-label="Toggle theme">
+                    <i data-feather="sun" class="theme-icon"></i>
+                </button>
+                <button class="nav-icon-btn" id="fullscreenBtn" aria-label="Fullscreen">
+                    <i data-feather="maximize-2"></i>
+                </button>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+                <i data-feather="menu"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Pomodoro Timer Section -->
+    <section class="timer-section" id="timer">
+        <div class="timer-container">
+            <div class="timer-display" id="timerDisplay">
+                <span class="timer-digits" id="timerDigits">25:00</span>
+            </div>
+            <div class="timer-info">
+                <p class="session-text" id="sessionText">Focus Session</p>
+                <p class="date-text" id="dateText"></p>
+            </div>
+            <div class="quote-container">
+                <p class="motivational-quote" id="motivationalQuote">Small steps daily create the biggest change.</p>
+            </div>
+            <div class="timer-controls">
+                <button class="btn btn-primary" id="startPauseBtn">
+                    <i data-feather="play" class="btn-icon"></i>
+                    <span>Start</span>
+                </button>
+                <button class="btn btn-secondary" id="resetBtn">
+                    <i data-feather="refresh-cw" class="btn-icon"></i>
+                    <span>Reset</span>
+                </button>
+                <button class="btn btn-tertiary" id="shortBreakBtn">
+                    <i data-feather="coffee" class="btn-icon"></i>
+                    <span>Short Break</span>
+                </button>
+                <button class="btn btn-icon-only" id="fullscreenTimerBtn" aria-label="Fullscreen timer">
+                    <i data-feather="maximize-2"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pomodoro Explanation Section -->
+    <section class="explanation-section" id="explanation">
+        <div class="explanation-container">
+            <h2 class="explanation-heading">
+                <span class="emoji">🕒</span> What is the Pomodoro Technique?
+            </h2>
+            <p class="explanation-text">
+                The Pomodoro Technique helps you work in short, focused sessions (usually 25 minutes), separated by
+                5-minute breaks. After four sessions, take a longer break. This structure improves concentration and
+                prevents burnout.
+            </p>
+            <h3 class="explanation-subheading">
+                <span class="emoji">💡</span> How to use it effectively
+            </h3>
+            <ul class="explanation-list">
+                <li>Decide your goal before each session.</li>
+                <li>Focus completely during work intervals.</li>
+                <li>Take short breaks for rest.</li>
+                <li>After four sessions, enjoy a longer one.</li>
+                <li>Track progress in your Diary section.</li>
+            </ul>
+            <p class="explanation-quote">"Consistency beats motivation every single time."</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p class="footer-text">© 2025 YourTimer.io | Designed to make every second count.</p>
+    </footer>
+
+    <!-- Duration Settings Modal -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Set Duration</h3>
+                <button class="modal-close" id="modalClose" aria-label="Close">
+                    <i data-feather="x"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="duration-input-group">
+                    <label for="workDuration">Work Duration (minutes)</label>
+                    <input type="number" id="workDuration" min="1" max="60" value="25">
+                </div>
+                <div class="duration-input-group">
+                    <label for="breakDuration">Short Break (minutes)</label>
+                    <input type="number" id="breakDuration" min="1" max="30" value="5">
+                </div>
+                <div class="duration-input-group">
+                    <label for="longBreakDuration">Long Break (minutes)</label>
+                    <input type="number" id="longBreakDuration" min="1" max="60" value="15">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="saveDurationBtn">Save</button>
+                <button class="btn btn-secondary" id="cancelDurationBtn">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <!-- <script src="script.js"></script> -->
+    <script src="js/navigation.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/fullscreen.js"></script>
+    <script src="js/pomodoro.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,12 @@
+{
+  "name": "timer",
+  "version": "1.0.0",
+  "description": "A modern, Gen-Z inspired productivity website featuring a calm, minimal, and aesthetically pleasing Pomodoro Timer platform.",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

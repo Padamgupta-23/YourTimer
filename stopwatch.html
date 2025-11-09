@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stopwatch - YourTimer</title>
+    <link rel="icon" type="image/png" href="fevicon.png">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Orbitron:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Left Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-menu">
+            <a href="index.html" class="sidebar-item" data-page="pomodoro">
+                <i data-feather="target"></i>
+                <span>🍅 Pomodoro Timer</span>
+            </a>
+            <a href="stopwatch.html" class="sidebar-item active" data-page="stopwatch">
+                <i data-feather="activity"></i>
+                <span>⏱ Stopwatch</span>
+            </a>
+            <a href="countdown.html" class="sidebar-item" data-page="countdown">
+                <i data-feather="clock"></i>
+                <span>⏲ Countdown Timer</span>
+            </a>
+            <a href="realtime.html" class="sidebar-item" data-page="clock">
+                <i data-feather="watch"></i>
+                <span>🕒 Real-Time Clock</span>
+            </a>
+        </div>
+    </aside>
+    
+    <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">
+        <i data-feather="menu"></i>
+    </button>
+
+    <!-- Spotify Player -->
+    <div class="spotify-player" id="spotifyPlayer">
+        <iframe 
+            style="border-radius:12px" 
+            src="https://open.spotify.com/embed/playlist/37i9dQZF1DX3PFzdbtx1Us?utm_source=generator" 
+            width="250" 
+            height="80" 
+            frameBorder="0" 
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+            loading="lazy">
+        </iframe>
+    </div>
+
+    <!-- Fixed Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-left">
+                <a href="index.html" class="logo">
+                    <img src="logo.png" alt="YourTimer Logo" class="logo-img">
+                    <!-- <span>YourTimer</span> -->
+                </a>
+            </div>
+            <div class="nav-right">
+                <a href="index.html" class="nav-link">Home</a>
+                <div class="dropdown">
+                    <button class="nav-link dropdown-btn" id="toolsBtn">
+                        Tools <i data-feather="chevron-down" class="dropdown-icon"></i>
+                    </button>
+                    <div class="dropdown-menu" id="toolsMenu">
+                        <a href="index.html" class="dropdown-item">Pomodoro Timer</a>
+                        <a href="stopwatch.html" class="dropdown-item">Stopwatch</a>
+                        <a href="countdown.html" class="dropdown-item">Countdown Timer</a>
+                        <a href="realtime.html" class="dropdown-item">Real-Time Clock</a>
+                    </div>
+                </div>
+                <button class="nav-icon-btn" id="themeToggle" aria-label="Toggle theme">
+                    <i data-feather="sun" class="theme-icon"></i>
+                </button>
+                <button class="nav-icon-btn" id="fullscreenBtn" aria-label="Fullscreen">
+                    <i data-feather="maximize-2"></i>
+                </button>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+                <i data-feather="menu"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Stopwatch Section -->
+    <section class="stopwatch-section">
+        <div class="timer-container">
+            <div class="stopwatch-display" id="stopwatchDisplay">00:00:00.00</div>
+            <div class="quote-container">
+                <p class="motivational-quote">Track your progress, not perfection.</p>
+            </div>
+            <div class="timer-controls">
+                <button class="btn btn-primary" id="stopwatchStartBtn">
+                    <i data-feather="play" class="btn-icon"></i>
+                    <span>Start</span>
+                </button>
+                <button class="btn btn-secondary" id="stopwatchStopBtn" disabled>
+                    <i data-feather="pause" class="btn-icon"></i>
+                    <span>Stop</span>
+                </button>
+                <button class="btn btn-tertiary" id="stopwatchLapBtn" disabled>
+                    <i data-feather="flag" class="btn-icon"></i>
+                    <span>Lap</span>
+                </button>
+                <button class="btn btn-secondary" id="stopwatchResetBtn">
+                    <i data-feather="refresh-cw" class="btn-icon"></i>
+                    <span>Reset</span>
+                </button>
+            </div>
+            <div class="lap-records" id="lapRecords"></div>
+        </div>
+    </section>
+
+    <!-- Description Section -->
+    <section class="explanation-section">
+        <div class="explanation-container">
+            <h2 class="explanation-heading">
+                <span class="emoji">⏱</span> About the Stopwatch
+            </h2>
+            <p class="explanation-text">
+                The Stopwatch helps you measure time precisely for your study sessions or tasks. Use it to track productivity sprints, measure performance, or simply monitor how long you stay focused.
+            </p>
+            <h3 class="explanation-subheading">
+                <span class="emoji">✨</span> Features
+            </h3>
+            <ul class="explanation-list">
+                <li>Start and Stop with a single click.</li>
+                <li>Record multiple laps to track intervals.</li>
+                <li>Reset anytime to start fresh.</li>
+                <li>Works smoothly even if you switch between timers.</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p class="footer-text">© 2025 YourTimer.io | Designed to make every second count.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <!-- <script src="script.js"></script> -->
+    <script src="js/navigation.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/fullscreen.js"></script>
+    <script src="js/stopwatch.js"></script>
+</body>
+</html>
