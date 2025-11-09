@@ -22,10 +22,24 @@ A modern, Gen-Z inspired productivity website featuring a calm, minimal, and aes
 
 ```
 timer/
-├── index.html      # Main HTML structure
-├── styles.css      # All styling with pastel theme
-├── script.js       # Timer logic, animations, and interactions
-└── README.md       # This file
+├── index.html
+├── countdown.html
+├── stopwatch.html
+├── realtime.html
+├── styles.css
+├── js/
+│ ├── script.js
+│ ├── countdown.js
+│ ├── stopwatch.js
+│ ├── pomodoro.js
+│ ├── realtime.js
+│ ├── navigation.js
+│ ├── theme.js
+│ └── fullscreen.js
+├── assets/
+│ ├── sounds/alarm.mp3
+│ └── images/logo.png, favicon.png
+└── README.md
 ```
 
 ## 🎯 Usage
@@ -96,5 +110,6 @@ Toggle between light and dark themes using the sun/moon icon in the navbar. Your
 © 2025 YourTimer.co | Designed to make every second count.
 
 ---
+
 
 **Enjoy your focused work sessions! 🚀**
