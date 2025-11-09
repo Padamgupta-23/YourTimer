@@ -38,7 +38,6 @@ timer/
 │ └── fullscreen.js
 ├── assets/
 │ ├── sounds/alarm.mp3
-│ └── images/logo.png, favicon.png
 └── README.md
 ```
 
@@ -113,3 +112,4 @@ Toggle between light and dark themes using the sun/moon icon in the navbar. Your
 
 
 **Enjoy your focused work sessions! 🚀**
+
