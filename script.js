@@ -690,6 +690,7 @@ function initializePageRouting() {
 }
 
 // Mobile Menu
+// Mobile Menu
 function initializeMobileMenu() {
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const navRight = document.querySelector('.nav-right');
@@ -698,12 +699,15 @@ function initializeMobileMenu() {
         mobileMenuBtn.addEventListener('click', () => {
             navRight.classList.toggle('mobile-active');
             const icon = mobileMenuBtn.querySelector('i');
-            if (navRight.classList.contains('mobile-active')) {
-                icon.setAttribute('data-feather', 'x');
-            } else {
-                icon.setAttribute('data-feather', 'menu');
+            
+            if (icon) { // ✅ safety check added
+                if (navRight.classList.contains('mobile-active')) {
+                    icon.setAttribute('data-feather', 'x');
+                } else {
+                    icon.setAttribute('data-feather', 'menu');
+                }
+                feather.replace();
             }
-            feather.replace();
         });
         
         // Close mobile menu when clicking on a link
@@ -712,8 +716,10 @@ function initializeMobileMenu() {
             link.addEventListener('click', () => {
                 navRight.classList.remove('mobile-active');
                 const icon = mobileMenuBtn.querySelector('i');
-                icon.setAttribute('data-feather', 'menu');
-                feather.replace();
+                if (icon) { // ✅ safety check added here too
+                    icon.setAttribute('data-feather', 'menu');
+                    feather.replace();
+                }
             });
         });
     }
