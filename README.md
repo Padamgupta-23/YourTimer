@@ -113,3 +113,9 @@ Toggle between light and dark themes using the sun/moon icon in the navbar. Your
 
 **Enjoy your focused work sessions! 🚀**
 
+
+<p align="center">
+  🧠 <b>Designed and Developed by <a href="https://github.com/Padamgupta-23">Padam Gupta</a></b>
+</p>
+
+
